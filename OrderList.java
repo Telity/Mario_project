@@ -47,7 +47,7 @@ public void sortOrder() {
         Collections.sort(orderList, new Comparator<Pizza>() {
             @Override
             public int compare(Pizza pizza1, Pizza pizza2) {
-                return Double.compare(pizza1.getPrice(), pizza2.getPrice());
+                return pizza1.getTime().compareTo(pizza2.getTime());
             }
         });
     }
