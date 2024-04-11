@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+// pizza class where all pizzas methods and menu methods
 public class Pizza{    
    
       private double price; 
@@ -7,7 +9,7 @@ public class Pizza{
       private String size; 
       private String toppings; 
       
-      // konstructor 
+      // konstructor
       public Pizza(int ID, String name, String size, String toppings, double price){
          this.price = price; 
          this.name = name;
@@ -48,8 +50,10 @@ public class Pizza{
       public void setID(int ID){
          this.ID=ID; 
    }
+   //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
-   // id name size toppings  price 
+   // ID navn størrelse pris 
+   //a method to call all pizzas
    public static void menu(){
       menuList.add(new Pizza(1,"Pepperoni Paradise", "normal", "cheese, sauce, pepperoni",70));
       menuList.add(new Pizza(2,"Margherita Marvel", "normal" ,"cheese, sauce, ham", 70)); 
@@ -83,21 +87,72 @@ public class Pizza{
       menuList.add(new Pizza(30,"Alfonso Dream", "normal", "cheese, sauce, gold",90)); 
       menuList.add(new Pizza(31,"Mario Supreme", "normal", "cheese, sauce, mario special sauce",90));
    }
-   public static void showMenu(){
-      System.out.println("Number | Name | Size | Toppings | Price ");
-      
+   //it shows the menu for now
+  /* public static void showMenu(){
+      System.out.println("ID | Name | Size | Toppings | Price ");
       for(Pizza pizza : menuList){
          System.out.println(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice());
          /*System.out.println("Number: " + pizza.getID()); 
          System.out.println("Name: " + pizza.getName()); 
          System.out.println("Size: " + pizza.getSize()); 
          System.out.println("Toppings: " + pizza.getToppings());
-         System.out.println("Price : " + pizza.getPrice());*/ 
+         System.out.println("Price : " + pizza.getPrice()); 
          System.out.println(); 
+      }
+   } */
+   
+   
+   //makes a file and if the file already exists do nothing
+   public static void CreateMenu() {
+      try{
+         File myObj = new File("Menu.txt");
+         if(myObj.createNewFile()){
+            System.out.println("File Created: "+ myObj.getName());
+         } else{
+            System.out.println("file already exists.");
+         }
+      
+      } catch (IOException e) {
+         System.out.println("An error occured");
+         e.printStackTrace();
+      }
+   
+   }
+   //type a new pizza into the menu
+   public static void WritetoMenu(){
+      try{
+         FileWriter myWriter = new FileWriter("Menu.txt");
+         for(Pizza pizza : menuList){
+            myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
+         }
+         myWriter.close();
+         System.out.println("Successfully added a pizza to the menucard");
+      
+      } catch(IOException e){
+         System.out.println("An error occured");
+         e.printStackTrace();
+      }
+   
+   }
+   //reads the menu in a file
+   public static void viewMenu(){
+      try {
+         File myObj = new File("Menu.txt");
+         Scanner myReader = new Scanner(myObj);
+         while (myReader.hasNextLine()){
+            String menuData = myReader.nextLine();
+            System.out.println(menuData);   
+         }   
+         myReader.close();
+      } catch (FileNotFoundException e){
+         System.out.println("An error occured");
+         e.printStackTrace();
       }
    }
    /*public static void main (String[]args){
       menu();
-      showMenu();
+        CreateMenu();
+        WritetoMenu();
+        viewMenu();
    }*/
 }
