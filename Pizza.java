@@ -114,7 +114,27 @@ public class Pizza{
          System.out.println(); 
       }
    } */
-   
+   //make a new pizza to the menu
+   public static void pizzaAdd() {
+       Scanner scanner = new Scanner(System.in);
+       
+       System.out.println("Enter the name of the pizza:");
+       String name = scanner.nextLine();
+       
+       System.out.println("Enter the size of the pizza:");
+       String size = scanner.nextLine();
+       
+       System.out.println("Enter the topping of the pizza:");
+       String toppings = scanner.nextLine();
+       
+       System.out.println("Enter the price of the pizza:");
+       double price = scanner.nextDouble();
+       
+       int ID = menuList.size()+1;
+       
+       menuList.add(new Pizza(ID, name, size, toppings, price));
+   }
+
    
    //makes a file and if the file already exists do nothing
    public static void CreateMenu() {
@@ -135,10 +155,12 @@ public class Pizza{
    //type a new pizza into the menu
    public static void WritetoMenu(){
       try{
-         FileWriter myWriter = new FileWriter("Menu.txt");
-         for(Pizza pizza : menuList){
+         FileWriter myWriter = new FileWriter("Menu.txt", true);
+         Pizza pizza = menuList.get(menuList.size()-1);
+         myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
+         /*for(Pizza pizza : menuList){
             myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
-         }
+         }*/
          myWriter.close();
          System.out.println("Successfully added a pizza to the menucard");
       
@@ -168,5 +190,9 @@ public class Pizza{
         CreateMenu();
         WritetoMenu();
         viewMenu();
+        pizzaAdd();
+        WritetoMenu();
+        viewMenu();
+        
    }*/
 }
