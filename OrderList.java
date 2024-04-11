@@ -52,12 +52,17 @@ public void sortOrder() {
         });
     }
 public void showOrder(){
+
+int actualNumber = 1; 
+
 for(Pizza pizza : orderList){
+pizza.setID(actualNumber); 
 System.out.println("Number: " + pizza.getID()); 
 System.out.println("Name: " + pizza.getName()); 
 System.out.println("Size: " + pizza.getSize()); 
 System.out.println("Time: " + pizza.getTime()); 
 System.out.println(); 
+actualNumber++; 
 }
 }
 
