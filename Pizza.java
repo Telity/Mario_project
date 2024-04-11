@@ -66,7 +66,7 @@ public class Pizza{
 }
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
-   // ID navn størrelse pris 
+   // ID Name Size Toppings Price 
    //a method to call all pizzas
    public static void menu(){
       menuList.add(new Pizza(1,"Pepperoni Paradise", "normal", "cheese, sauce, pepperoni",70));
