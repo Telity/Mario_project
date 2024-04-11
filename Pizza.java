@@ -8,6 +8,7 @@ public class Pizza{
       private int ID;
       private String size; 
       private String toppings; 
+      private LocalTime time; 
       
       // konstructor
       public Pizza(int ID, String name, String size, String toppings, double price){
@@ -50,6 +51,12 @@ public class Pizza{
       public void setID(int ID){
          this.ID=ID; 
    }
+      public void setTime(LocalTime time){
+         this.time = time;
+   }
+      public LocalTime getTime(){
+         return time; 
+}
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID navn størrelse pris 
