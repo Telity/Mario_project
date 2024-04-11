@@ -1,5 +1,8 @@
 import java.util.*;
 import java.io.*;
+import java.time.format.*;
+import java.text.*;
+import java.time.*;
 // pizza class where all pizzas methods and menu methods
 public class Pizza{    
    
@@ -8,6 +11,7 @@ public class Pizza{
       private int ID;
       private String size; 
       private String toppings; 
+      private LocalTime time; 
       
       // konstructor
       public Pizza(int ID, String name, String size, String toppings, double price){
@@ -17,6 +21,10 @@ public class Pizza{
          this.toppings = toppings; 
          this.size = size; 
    }
+      // default konstructor
+      public Pizza(){
+      
+      }
       // getters 
       public double getPrice(){
          return price; 
@@ -50,9 +58,15 @@ public class Pizza{
       public void setID(int ID){
          this.ID=ID; 
    }
+      public void setTime(LocalTime time){
+         this.time = time;
+   }
+      public LocalTime getTime(){
+         return time; 
+}
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
-   // ID navn størrelse pris 
+   // ID Name Size Toppings Price 
    //a method to call all pizzas
    public static void menu(){
       menuList.add(new Pizza(1,"Pepperoni Paradise", "normal", "cheese, sauce, pepperoni",70));
