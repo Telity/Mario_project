@@ -11,7 +11,8 @@ public class Pizza{
       private int ID;
       private String size; 
       private String toppings; 
-      private LocalTime time; 
+      private LocalTime time;
+      static int Line = 0; 
       
       // constructor
       public Pizza(int ID, String name, String size, String toppings, double price){
@@ -75,8 +76,7 @@ public class Pizza{
         return menuString;
     }
          
-         
-   //tostring
+     
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID Name Size Toppings Price 
@@ -118,6 +118,8 @@ public class Pizza{
    public static void pizzaAdd() {
        Scanner scanner = new Scanner(System.in);
        
+       //int ID =menuList.size()+1;
+       
        System.out.println("Enter the name of the pizza:");
        String name = scanner.nextLine();
        
@@ -130,9 +132,32 @@ public class Pizza{
        System.out.println("Enter the price of the pizza:");
        double price = scanner.nextDouble();
        
-       int ID = menuList.size()+1;
-       
-       menuList.add(new Pizza(ID, name, size, toppings, price));
+       try{
+       File file = new File("Menu.txt");
+       Scanner sc = new Scanner(file);
+       while(sc.hasNextLine()){
+         sc.nextLine();
+         Line++;
+       }
+       sc.close();
+       } catch(Exception e){
+         e.getStackTrace();
+       }
+       int ID =Line;
+       boolean pizzaExists = false;
+       for(Pizza pizza : menuList){
+         if(pizza.getName().equalsIgnoreCase(name) &&
+            pizza.getSize().equalsIgnoreCase(size) &&
+            pizza.getToppings().equalsIgnoreCase(toppings) && 
+            pizza.getPrice() ==price){
+            pizzaExists = true;
+            System.out.println("This pizza already Exists in the menu");
+            break;
+            }
+       }
+       if(!pizzaExists){
+         menuList.add(new Pizza(ID, name, size, toppings, price));
+       }
    }//addpizza
 
    
@@ -143,7 +168,7 @@ public class Pizza{
          if(myObj.createNewFile()){
             System.out.println("File Created: "+ myObj.getName());
          } else{
-            System.out.println("file already exists.");
+            System.out.println();
          }
       
       } catch (IOException e) {
@@ -155,10 +180,27 @@ public class Pizza{
    //type a new pizza into the menu
    public static void WritetoMenu(){
       try{
-         FileWriter myWriter = new FileWriter("Menu.txt");
-         myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
+         FileWriter myWriter = new FileWriter("Menu.txt",true);
+         //myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
          for(Pizza pizza : menuList){
+            boolean pizzaExistsInFile = false;
+            File file = new File("Menu.txt");
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine()){
+               String line = fileScanner.nextLine();
+               if(line.contains(pizza.getName()) &&
+                  line.contains(pizza.getSize()) &&
+                  line.contains(pizza.getToppings()) &&
+                  line.contains(Double.toString(pizza.getPrice()))){
+                  pizzaExistsInFile = true;
+                  break;
+                  }
+                  
+            }
+            fileScanner.close();
+            if(!pizzaExistsInFile){
             myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
+         }
          }
          myWriter.close();
       
@@ -196,7 +238,7 @@ public class Pizza{
          e.printStackTrace();
       }
    }//viewmenu
-   public static void Menu(){
+   public static void StartUp(){
       CreateMenu();
       CreateMenuFile();
       WritetoMenu();
@@ -204,13 +246,12 @@ public class Pizza{
    }//Menu
    public static void AddPizza(){
       pizzaAdd();
-      AddtoMenu();
-      viewMenu();
+      WritetoMenu();
    }//AddPizza
    
    /*public static void main (String[]args){
-        Menu();
+        StartUp();        
         AddPizza();
-        
+        viewMenu();
    }*/
 }//class
