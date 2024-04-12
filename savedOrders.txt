@@ -1,0 +1,2 @@
+Todays date: [12-04-2024]
+Order : Id: [3] Pizza: [BBQ Bonanza] Size: [normal] Toppings: [cheese, sauce, tuna] Price: [70.0] Time: [14:15]Order : Id: [1] Pizza: [Margherita Marvel] Size: [normal] Toppings: [cheese, sauce, ham] Price: [70.0] Time: [14:15]Order : Id: [2] Pizza: [Supreme Sensation] Size: [normal] Toppings: [cheese, sauce, shrimp] Price: [70.0] Time: [14:15]
