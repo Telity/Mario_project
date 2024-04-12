@@ -14,7 +14,7 @@ static int count;
 ArrayList<Pizza> orderList = new ArrayList<Pizza>();
 ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 public void makeOrder(){
- menu.menu(); // calls the menu - so we dont run into indexoutofbounds
+ menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
  System.out.println("Choose if you are calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
 
