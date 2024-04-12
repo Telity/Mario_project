@@ -7,7 +7,6 @@ public class OrderList{
 Pizza menu = new Pizza(); 
 Scanner scan = new Scanner(System.in); 
 static LocalTime time = LocalTime.of(14, 0); // Initialize time to 14:00
-static int up = 0;
 static Random random = new Random();
   
 
@@ -37,6 +36,7 @@ public void makeOrder(){
             int pizza = scan.nextInt();
             orderList.add(menu.menuList.get(pizza)); // her tilføjes pizza til ordrelisten så Mario kan se dem og de kan fjernes/laves.
             savedOrders.add(menu.menuList.get(pizza)); //Her gemmes pizza bestillinger til senere statistik brug 
+            savedOrders.get(x).setTime(time); //Sætter tid på orderene der gemmes til statistik. 
             price = orderList.get(x).getPrice() + price; // finder samlede pris for pizzaerne. 
             System.out.println("Pizza will be ready at " + time); // viser tiden pizzaen er klar. 
             orderList.get(x).setTime(time); // Sætter ordre listens pris til tid, så man kan sammenligne tiderne. 
@@ -52,19 +52,21 @@ public void sortOrder() {
             }
         });
     }
+
+
 public void showOrder(){
 
 int actualNumber = 1; 
 
-for(Pizza pizza : orderList){
-pizza.setID(actualNumber); 
-System.out.println("Number: " + pizza.getID()); 
-System.out.println("Name: " + pizza.getName()); 
-System.out.println("Size: " + pizza.getSize()); 
-System.out.println("Time: " + pizza.getTime()); 
-System.out.println(); 
-actualNumber++; 
-}
+   for(Pizza pizza : orderList){
+      pizza.setID(actualNumber); 
+      System.out.println("Number: " + pizza.getID()); 
+      System.out.println("Name: " + pizza.getName()); 
+      System.out.println("Size: " + pizza.getSize()); 
+      System.out.println("Time: " + pizza.getTime()); 
+      System.out.println(); 
+      actualNumber++; 
+   }
 }
 
 public void removeOrder(){
@@ -99,6 +101,50 @@ orderlist.showOrder();
 orderlist.removeOrder(); 
 
 } */
+public void statistic(){
 
+Collections.sort(pizzas, new Comparator<Pizza>() {
+       @Override
+       public int compare(Pizza p1, Pizza p2) {
+         return p1.getName().compareTo(p2.getName());
+            }
+        });
+        
+         for (Pizza pizza : savedOrders) {
+            int number = count(savedOrders, pizza.getName());
+            System.out.println("Number of Pizza " + pizza.getName() + "is : " + count);
+        }
+    }
 
+    public static int count(ArrayList<Pizza> list, String name) {
+        int count = 0;
+        for (Pizza pizza : list) {
+            if (pizza.getName().equals(name)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+public void fileOrder(){
+   try{
+      File file = new File("savedOrders.txt");
+         if(!file.exists()){
+            file.createNewFile();
+         }
+      FileWriter writer = new FileWriter(file,true);
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // ænder datoen fra amerikans order til dansk
+         String dkDate = LocalDate.now().format(formatter); //ændre datoen til en string. 
+            writer.write("Todays date: ["+dkDate+"]");
+            writer.write("\n");
+            for(Pizza pizza : savedOrders)
+                 writer.write(pizza.toString());
+                 writer.write("\n");
+                 writer.close();
+   }
+   catch(Exception e){
+      e.printStackTrace();
+   }
+
+}
 }
