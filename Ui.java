@@ -12,7 +12,7 @@ public class Ui {
             System.out.println("2: Add order");
             System.out.println("**OPTIONIAL*** 3: Remove order");
             System.out.println("***OPTIONIAL** 4: Save sale statistics of the day");
-            System.out.println("5: See menu card");
+            System.out.println("5: Modify menu card");
             System.out.println("6: Exit");
 
             int choice = scanner.nextInt();
