@@ -13,7 +13,7 @@ public class Pizza{
       private String toppings; 
       private LocalTime time; 
       
-      // konstructor
+      // constructor
       public Pizza(int ID, String name, String size, String toppings, double price){
          this.price = price; 
          this.name = name;
@@ -21,7 +21,7 @@ public class Pizza{
          this.toppings = toppings; 
          this.size = size; 
    }
-      // default konstructor
+      // default constructor
       public Pizza(){
       
       }
@@ -64,14 +64,14 @@ public class Pizza{
       public LocalTime getTime(){
          return time; 
    }
-      public string toString(){ // id name size toppins price time
+      public String toString(){ // id name size toppins price time
          return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]";
-   }
+   }//tostring
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID Name Size Toppings Price 
    //a method to call all pizzas
-   public static void menu(){
+   public static void CreateMenu(){
       menuList.add(new Pizza(1,"Pepperoni Paradise", "normal", "cheese, sauce, pepperoni",70));
       menuList.add(new Pizza(2,"Margherita Marvel", "normal" ,"cheese, sauce, ham", 70)); 
       menuList.add(new Pizza(3,"Supreme Sensation", "normal" ,"cheese, sauce, shrimp", 70));
@@ -103,20 +103,7 @@ public class Pizza{
       menuList.add(new Pizza(29,"Rustic Roasted Vegetable", "normal","cheese, sauce, potato", 90));
       menuList.add(new Pizza(30,"Alfonso Dream", "normal", "cheese, sauce, gold",90)); 
       menuList.add(new Pizza(31,"Mario Supreme", "normal", "cheese, sauce, mario special sauce",90));
-   }
-   //it shows the menu for now
-  /* public static void showMenu(){
-      System.out.println("ID | Name | Size | Toppings | Price ");
-      for(Pizza pizza : menuList){
-         System.out.println(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice());
-         /*System.out.println("Number: " + pizza.getID()); 
-         System.out.println("Name: " + pizza.getName()); 
-         System.out.println("Size: " + pizza.getSize()); 
-         System.out.println("Toppings: " + pizza.getToppings());
-         System.out.println("Price : " + pizza.getPrice()); 
-         System.out.println(); 
-      }
-   } */
+   }//menu
    //make a new pizza to the menu
    public static void pizzaAdd() {
        Scanner scanner = new Scanner(System.in);
@@ -136,11 +123,11 @@ public class Pizza{
        int ID = menuList.size()+1;
        
        menuList.add(new Pizza(ID, name, size, toppings, price));
-   }
+   }//addpizza
 
    
    //makes a file and if the file already exists do nothing
-   public static void CreateMenu() {
+   public static void CreateMenuFile() {
       try{
          File myObj = new File("Menu.txt");
          if(myObj.createNewFile()){
@@ -154,16 +141,27 @@ public class Pizza{
          e.printStackTrace();
       }
    
-   }
+   }//createmenu
    //type a new pizza into the menu
    public static void WritetoMenu(){
+      try{
+         FileWriter myWriter = new FileWriter("Menu.txt");
+         myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
+         for(Pizza pizza : menuList){
+            myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
+         }
+         myWriter.close();
+      
+      } catch(IOException e){
+         System.out.println("An error occured");
+         e.printStackTrace();
+      }
+      }//write to menu
+   public static void AddtoMenu(){
       try{
          FileWriter myWriter = new FileWriter("Menu.txt", true);
          Pizza pizza = menuList.get(menuList.size()-1);
          myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
-         /*for(Pizza pizza : menuList){
-            myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
-         }*/
          myWriter.close();
          System.out.println("Successfully added a pizza to the menucard");
       
@@ -171,8 +169,8 @@ public class Pizza{
          System.out.println("An error occured");
          e.printStackTrace();
       }
-   
-   }
+
+   }//addtomenu
    //reads the menu in a file
    public static void viewMenu(){
       try {
@@ -187,15 +185,22 @@ public class Pizza{
          System.out.println("An error occured");
          e.printStackTrace();
       }
-   }
+   }//viewmenu
+   public static void Menu(){
+      CreateMenu();
+      CreateMenuFile();
+      WritetoMenu();
+      viewMenu();
+   }//Menu
+   public static void AddPizza(){
+      pizzaAdd();
+      AddtoMenu();
+      viewMenu();
+   }//AddPizza
+   
    /*public static void main (String[]args){
-      menu();
-        CreateMenu();
-        WritetoMenu();
-        viewMenu();
-        pizzaAdd();
-        WritetoMenu();
-        viewMenu();
+        Menu();
+        AddPizza();
         
    }*/
-}
+}//class
