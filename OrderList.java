@@ -142,7 +142,8 @@ public void fileOrder(){
             writer.write("Todays date: ["+dkDate+"]\n");
             //writer.write("\n");
             for(Pizza pizza : savedOrders)
-                 writer.write(pizza.toString()+"\n");
+                 writer.write("ID: "+pizza.getID()+" Name: " + pizza.getName()+ " Size: "
+                  + pizza.getSize()+ " Toppings: " + pizza.getToppings()+" Price: " + pizza.getPrice() + " Time: " + pizza.getTime()+"\n");
                  //writer.write("\n");
                  writer.close();
    }
