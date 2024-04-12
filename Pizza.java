@@ -63,7 +63,10 @@ public class Pizza{
    }
       public LocalTime getTime(){
          return time; 
-}
+   }
+      public string toString(){ // id name size toppins price time
+         return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]";
+   }
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID Name Size Toppings Price 
