@@ -65,9 +65,18 @@ public class Pizza{
       public LocalTime getTime(){
          return time; 
    }
-      public String toString(){ // id name size toppins price time
-         return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]"+ "\n";
-   }//tostring
+     /* public String toString(){ // id name size toppins price time
+         return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]"; */
+         
+        public String toString(){ // id name size toppins price time
+        String menuString = "Menu:\n";
+            for (Pizza pizza : menuList) {
+            menuString += pizza.toString() + "\n";
+    }
+        return menuString;
+    }
+         
+     
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID Name Size Toppings Price 
