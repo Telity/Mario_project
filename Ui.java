@@ -6,6 +6,7 @@ public class Ui {
    public Ui() {
         Scanner scanner = new Scanner(System.in);
         OrderList orderList = new OrderList();
+        Pizza pizza = new Pizza();
 
         while (true) {
             System.out.println("Welcome to the UI");
@@ -13,7 +14,7 @@ public class Ui {
             System.out.println("2: Add order");
             System.out.println("3: Remove order");
             System.out.println("4: Save sale statistics of the day");
-            System.out.println("5: Modify menu card");
+            System.out.println("5: View menu card");
             System.out.println("6: Exit");
 
             int choice = scanner.nextInt();
@@ -33,7 +34,7 @@ public class Ui {
                     // Call method to save sale statistics of the day
                     break;
                 case 5:
-                    Pizza.Menu();
+                    pizza.viewMenu();
                     break;
                 case 6:
                     System.out.println("Exiting UI. Have a great day");
