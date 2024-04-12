@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Ui {
-    public static void main(String[] args) {
+   public Ui() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -38,5 +38,5 @@ public class Ui {
                     System.out.println("Invalid input");
             }
         }
-    }
+   }
 }
