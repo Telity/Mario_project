@@ -8,6 +8,7 @@ Pizza menu = new Pizza();
 Scanner scan = new Scanner(System.in); 
 static LocalTime time = LocalTime.of(14, 0); // Initialize time to 14:00
 static Random random = new Random();
+static int count;
   
 
 ArrayList<Pizza> orderList = new ArrayList<Pizza>();
@@ -60,10 +61,11 @@ int actualNumber = 1;
 
    for(Pizza pizza : orderList){
       pizza.setID(actualNumber); 
-      System.out.println("Number: " + pizza.getID()); 
-      System.out.println("Name: " + pizza.getName()); 
-      System.out.println("Size: " + pizza.getSize()); 
-      System.out.println("Time: " + pizza.getTime()); 
+      System.out.print("Number: " + pizza.getID()); 
+      System.out.print(" Name: " + pizza.getName()); 
+      System.out.print(" Size: " + pizza.getSize()); 
+      System.out.print(" Toppings: " + pizza.getToppings());
+      System.out.print(" Time: " + pizza.getTime()); 
       System.out.println(); 
       actualNumber++; 
    }
@@ -103,7 +105,7 @@ orderlist.removeOrder();
 } */
 public void statistic(){
 
-Collections.sort(pizzas, new Comparator<Pizza>() {
+Collections.sort(savedOrders, new Comparator<Pizza>() {
        @Override
        public int compare(Pizza p1, Pizza p2) {
          return p1.getName().compareTo(p2.getName());
@@ -117,7 +119,7 @@ Collections.sort(pizzas, new Comparator<Pizza>() {
     }
 
     public static int count(ArrayList<Pizza> list, String name) {
-        int count = 0;
+        count = 0;
         for (Pizza pizza : list) {
             if (pizza.getName().equals(name)) {
                 count++;
@@ -125,7 +127,7 @@ Collections.sort(pizzas, new Comparator<Pizza>() {
         }
         return count;
     }
-}
+
 public void fileOrder(){
    try{
       File file = new File("savedOrders.txt");
