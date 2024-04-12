@@ -66,7 +66,7 @@ public class Pizza{
          return time; 
    }
       public String toString(){ // id name size toppins price time
-         return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"] \n";
+         return "Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]"+ "\n";
    }//tostring
    //an array for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
