@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//UI er kun en samler metode. den kan IKKE printe data ud.
+//UI is only a collection method. you need to use a different file to acces everything.
 
 public class Ui {
    public Ui() {
