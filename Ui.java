@@ -21,9 +21,10 @@ public class Ui {
             switch (choice) {
                 case 1:
                     orderList.showOrder();
+                    orderList.sortOrder();
                     break;
                 case 2:
-                    // Call method to add order
+                    orderList.makeOrder();
                     break;
                 case 3:
                     orderList.removeOrder();
@@ -32,7 +33,7 @@ public class Ui {
                     // Call method to save sale statistics of the day
                     break;
                 case 5:
-                    // Call method to see menu card
+                    Pizza.Menu();
                     break;
                 case 6:
                     System.out.println("Exiting UI. Have a great day");
