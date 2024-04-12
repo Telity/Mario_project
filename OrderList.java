@@ -14,6 +14,7 @@ static Random random = new Random();
 ArrayList<Pizza> orderList = new ArrayList<Pizza>();
 ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 public void makeOrder(){
+ menu.menu(); // calls the menu - so we dont run into indexoutofbounds
  System.out.println("Choose if you are calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
 
@@ -52,12 +53,17 @@ public void sortOrder() {
         });
     }
 public void showOrder(){
+
+int actualNumber = 1; 
+
 for(Pizza pizza : orderList){
+pizza.setID(actualNumber); 
 System.out.println("Number: " + pizza.getID()); 
 System.out.println("Name: " + pizza.getName()); 
 System.out.println("Size: " + pizza.getSize()); 
 System.out.println("Time: " + pizza.getTime()); 
 System.out.println(); 
+actualNumber++; 
 }
 }
 
@@ -83,7 +89,16 @@ if(!pizzaFundet){
    } 
   }
 
+/*public static void main(String[] args){
 
+OrderList orderlist = new OrderList(); 
+
+orderlist.makeOrder();
+orderlist.sortOrder();
+orderlist.showOrder(); 
+orderlist.removeOrder(); 
+
+} */
 
 
 }
