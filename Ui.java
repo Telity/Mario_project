@@ -35,7 +35,7 @@ public class Ui {
                     pizza.viewMenu();
                     break;
                 case 5:
-                    // Method for adding pizza to menu card
+                    pizza.AddPizza();
                     break;
                 case 6:
                     System.out.println("Exiting UI. Have a great day");

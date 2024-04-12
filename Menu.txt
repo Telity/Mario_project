@@ -30,3 +30,4 @@ ID|  Pizza Name  |  Size  |  Toppings |  Price
 29 | Rustic Roasted Vegetable | normal | cheese, sauce, potato | 90.0
 30 | Alfonso Dream | normal | cheese, sauce, gold | 90.0
 31 | Mario Supreme | normal | cheese, sauce, mario special sauce | 90.0
+1 | Madness Monday | normal | cheese, pepperoni, sweet pebbers | 100.0
