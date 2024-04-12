@@ -7,6 +7,7 @@ public class Ui {
         Scanner scanner = new Scanner(System.in);
         OrderList orderList = new OrderList();
         Pizza pizza = new Pizza();
+        pizza.StartUp();
 
         while (true) {
             System.out.println("Welcome to the UI");
