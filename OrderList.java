@@ -13,6 +13,7 @@ static int count;
 
 ArrayList<Pizza> orderList = new ArrayList<Pizza>();
 ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
+
 public void makeOrder(){
  menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
  System.out.println("Choose if you are calling or ordering in shop (1 for shop, 2 for call)");
@@ -112,10 +113,11 @@ Collections.sort(savedOrders, new Comparator<Pizza>() {
             }
         });
         
-         for (Pizza pizza : savedOrders) {
+        for (Pizza pizza : savedOrders) {
             int number = count(savedOrders, pizza.getName());
             System.out.println("Number of Pizza " + pizza.getName() + "is : " + count);
         }
+        
     }
 
     public static int count(ArrayList<Pizza> list, String name) {
@@ -137,11 +139,11 @@ public void fileOrder(){
       FileWriter writer = new FileWriter(file,true);
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // ænder datoen fra amerikans order til dansk
          String dkDate = LocalDate.now().format(formatter); //ændre datoen til en string. 
-            writer.write("Todays date: ["+dkDate+"]");
-            writer.write("\n");
+            writer.write("Todays date: ["+dkDate+"]\n");
+            //writer.write("\n");
             for(Pizza pizza : savedOrders)
-                 writer.write(pizza.toString());
-                 writer.write("\n");
+                 writer.write(pizza.toString()+"\n");
+                 //writer.write("\n");
                  writer.close();
    }
    catch(Exception e){
