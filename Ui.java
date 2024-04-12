@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Ui {
    public Ui() {
         Scanner scanner = new Scanner(System.in);
+        OrderList orderList = new OrderList();
 
         while (true) {
             System.out.println("Welcome to the UI");
             System.out.println("1: Look at the current orders");
             System.out.println("2: Add order");
-            System.out.println("**OPTIONIAL*** 3: Remove order");
-            System.out.println("***OPTIONIAL** 4: Save sale statistics of the day");
+            System.out.println("3: Remove order");
+            System.out.println("4: Save sale statistics of the day");
             System.out.println("5: Modify menu card");
             System.out.println("6: Exit");
 
@@ -19,13 +20,13 @@ public class Ui {
 
             switch (choice) {
                 case 1:
-                    // Call method to view current orders
+                    orderList.showOrder();
                     break;
                 case 2:
                     // Call method to add order
                     break;
                 case 3:
-                    // Call method to remove order
+                    orderList.removeOrder();
                     break;
                 case 4:
                     // Call method to save sale statistics of the day
