@@ -11,8 +11,10 @@ public class Pizza{
       private int ID;
       private String size; 
       private String toppings; 
-      private LocalTime time;
+      private LocalTime time = LocalTime.of(14, 0);
+      private int actualNumber;
       static int Line = 0; 
+      
       
       // constructor
       public Pizza(int ID, String name, String size, String toppings, double price){
@@ -64,6 +66,12 @@ public class Pizza{
    }
       public LocalTime getTime(){
          return time; 
+   }
+      public void setActualNumber(int actualNumber){
+         this.actualNumber = actualNumber;   
+   }
+      public int getActualNumber(){
+         return actualNumber;   
    }
       //public void toString(){ // id name size toppins price time
        //System.out.println("Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]"); 
