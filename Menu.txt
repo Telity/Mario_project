@@ -29,3 +29,4 @@
 29 | Rustic Roasted Vegetable | normal | cheese, sauce, potato | 90.0
 30 | Alfonso Dream | normal | cheese, sauce, gold | 90.0
 31 | Mario Supreme | normal | cheese, sauce, mario special sauce | 90.0
+31 | 6 | normal | cheese, sauce, pepperoni | 83.0

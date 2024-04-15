@@ -91,20 +91,20 @@ public void removeOrder(){
 
 boolean pizzaFundet = false; 
 
-System.out.println("Hvad er nummeret på pizzaen du gerne vil fjerne?"); 
+System.out.println("What is the number of the pizza you want to remove?"); 
    int nummer = scan.nextInt(); 
 
 for(int i=0; i<orderList.size(); i++){
    Pizza pizza = orderList.get(i); 
    if(pizza.getActualNumber() == nummer){ // i tvivl om denne skal være getID eller getNumber... eller? 
-      System.out.println("Pizza nummer : " + nummer + " " + orderList.get(nummer-1).getName()+" er fjernet"); 
+      System.out.println("Pizza number : " + nummer + " " + orderList.get(nummer-1).getName()+" is removed"); 
       orderList.remove(nummer-1); 
       pizzaFundet = true; 
    break; 
    }
 }
 if(!pizzaFundet){
-   System.out.println("Kunne ikke finde pizza : " + nummer); 
+   System.out.println("Can't find the pizza: " + nummer); 
    
    } 
   }
