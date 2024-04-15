@@ -3,6 +3,7 @@ import java.io.*;
 import java.time.format.*;
 import java.text.*;
 import java.time.*;
+
 public class OrderList{ 
 Pizza menu = new Pizza(); 
 Scanner scan = new Scanner(System.in); 
@@ -14,6 +15,7 @@ static int count;
 ArrayList<Pizza> orderList = new ArrayList<Pizza>();
 ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 
+// creates a new order (time & pizza ID)
 public void makeOrder(){
  menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
  System.out.println("Choose if you are calling or ordering in shop (1 for shop, 2 for call)");
@@ -26,8 +28,7 @@ public void makeOrder(){
                 System.out.println("Hello and thank you for calling");
                 time = time.plusHours(1); // Add 1 hour
                 
-               }
-         
+               }  
    
    System.out.println("How many pizzas would you like to order today?");
       int choice = scan.nextInt();
@@ -50,17 +51,13 @@ public void makeOrder(){
             // Calculate the total price
                   price += pizza.getPrice();
             }
-    
-           /* orderList.add(menu.menuList.get(pizza)); // her tilføjes pizza til ordrelisten så Mario kan se dem og de kan fjernes/laves.
-            savedOrders.add(menu.menuList.get(pizza)); //Her gemmes pizza bestillinger til senere statistik brug 
-            savedOrders.get(x).setTime(time); //Sætter tid på orderene der gemmes til statistik. 
-            price = orderList.get(x).getPrice() + price; // finder samlede pris for pizzaerne. 
-            orderList.get(x).setTime(time); // Sætter ordre listens pris til tid, så man kan sammenligne tiderne. */
 
 }
 System.out.println("Pizzas will be ready at " + time); // viser tiden pizzaen er klar. 
 System.out.println("The total price is: " + price);
 }
+
+// sorts the pizzas by time 
 public void sortOrder() {
         Collections.sort(orderList, new Comparator<Pizza>() {
             @Override
@@ -70,7 +67,7 @@ public void sortOrder() {
         });
     }
 
-
+// prints out the orderlist 
 public void showOrder(){
 
    int actualNumber = 1; 
@@ -87,6 +84,7 @@ public void showOrder(){
    }
 }
 
+// removes a order from the orderlist 
 public void removeOrder(){
 
 boolean pizzaFundet = false; 
@@ -96,7 +94,7 @@ System.out.println("What is the number of the pizza you want to remove?");
 
 for(int i=0; i<orderList.size(); i++){
    Pizza pizza = orderList.get(i); 
-   if(pizza.getActualNumber() == nummer){ // i tvivl om denne skal være getID eller getNumber... eller? 
+   if(pizza.getActualNumber() == nummer){ 
       System.out.println("Pizza number : " + nummer + " " + orderList.get(nummer-1).getName()+" is removed"); 
       orderList.remove(nummer-1); 
       pizzaFundet = true; 
@@ -109,32 +107,7 @@ if(!pizzaFundet){
    } 
   }
 
-/*public static void main(String[] args){
-
-OrderList orderlist = new OrderList(); 
-
-orderlist.makeOrder();
-orderlist.sortOrder();
-orderlist.showOrder(); 
-orderlist.removeOrder(); 
-
-} */
-/*public void statistic(){
-
-Collections.sort(savedOrders, new Comparator<Pizza>() {
-       @Override
-       public int compare(Pizza p1, Pizza p2) {
-         return p1.getName().compareTo(p2.getName());
-            }
-        });
-        
-        for (Pizza pizza : savedOrders) {
-            int number = count(savedOrders, pizza.getName());
-            System.out.println("Number of Pizza " + pizza.getName() + "is : " + count);
-        }
-        
-    }*/
-
+    // count method which is called in fileOrder 
     public static int count(ArrayList<Pizza> list, String name) {
         count = 0;
         for (Pizza pizza : list) {
@@ -145,6 +118,7 @@ Collections.sort(savedOrders, new Comparator<Pizza>() {
         return count;
     }
 
+// creates a order - writes todays date - writes individual pizza details - sorts pizza by name and occurrences - statistic
 public void fileOrder(){
    try{
       File file = new File("savedOrders.txt");
@@ -177,8 +151,7 @@ public void fileOrder(){
 
          for (Pizza pizza : savedOrders) {
                String pizzaName = pizza.getName();
-    
-    // Tjekker om pizza navnet allerede har været der
+    // checks if the pizza name is already there
           boolean isProcessed = false;
             for (int i = 0; i < numPizza; i++) {
                   if (pizzaNames[i].equals(pizzaName)) {
@@ -186,8 +159,7 @@ public void fileOrder(){
                    break;
         }
     }
-    
-    // hvis en pizza ikke har været der, vil 
+    // if a pizza has not been detected
     if (!isProcessed) {
         int count = count(savedOrders, pizzaName);
         pizzaNames[numPizza] = pizzaName;
