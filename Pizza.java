@@ -75,17 +75,6 @@ public class Pizza{
       public int getActualNumber(){
          return actualNumber;   
    }
-      //public void toString(){ // id name size toppins price time
-       //System.out.println("Order : Id: ["+ID+"] Pizza: ["+name+"] Size: ["+size+"] Toppings: ["+toppings+"] Price: ["+price+"] Time: ["+time+"]"); 
-         
-       /* public String toString(){ // id name size toppins price time
-        String menuString = "Menu:\n";
-            for (Pizza pizza : menuList) {
-            menuString += pizza.toString() + "\n";
-    }
-        return menuString;
-    }*/
-   //}
      
    //arraylist for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
@@ -153,15 +142,15 @@ public class Pizza{
        }
        sc.close();
        } catch(Exception e){
-         e.getStackTrace();
+            e.getStackTrace();
        }
-       int ID =Line;
+       int ID = Line +1;
        boolean pizzaExists = false;
        for(Pizza pizza : menuList){
          if(pizza.getName().equalsIgnoreCase(name) &&
             pizza.getSize().equalsIgnoreCase(size) &&
             pizza.getToppings().equalsIgnoreCase(toppings) && 
-            pizza.getPrice() ==price){
+            pizza.getPrice() == price){
             pizzaExists = true;
             System.out.println("This pizza already Exists in the menu");
             break;
@@ -183,8 +172,8 @@ public class Pizza{
          }
       
       } catch (IOException e) {
-         System.out.println("An error occured");
-         e.printStackTrace();
+            System.out.println("An error occured");
+            e.printStackTrace();
       }
    
    } //createmenu
@@ -260,9 +249,9 @@ public class Pizza{
       WritetoMenu();
    }//AddPizza
    
-   /*public static void main (String[]args){
+   public static void main (String[]args){
         StartUp();        
         AddPizza();
         viewMenu();
-   }*/
-}//class
+   }
+}//class 
