@@ -15,3 +15,13 @@ Number of Pizza Supreme Sensation is : 3
 Number of Pizza Veggie Delight is : 1
 Number of Pizza White Pizza Wonder is : 1
 
+Todays date: [15-04-2024]
+ID: [4]  Name: [BBQ Bonanza] Size: [normal] Toppings: [cheese, sauce, tuna] Price: [70.0] Time: [15:00]
+ID: [6]  Name: [Meat Lovers Madness] Size: [normal] Toppings: [cheese, sauce, meatballs] Price: [70.0] Time: [15:00]
+ID: [7]  Name: [Hawaiian Heaven] Size: [normal] Toppings: [cheese, sauce, pineapple] Price: [70.0] Time: [15:00]
+
+Data for Statistics 
+Number of Pizza BBQ Bonanza is : 1
+Number of Pizza Hawaiian Heaven is : 1
+Number of Pizza Meat Lovers Madness is : 1
+

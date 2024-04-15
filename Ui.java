@@ -40,7 +40,6 @@ public class Ui {
                     break;
                 case 6:
                     System.out.println("Exiting UI. Have a great day");
-                    //orderList.statistic();
                     orderList.fileOrder();
                     System.exit(0);
                 default:
