@@ -18,7 +18,7 @@ ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 // creates a new order (time & pizza ID)
 public void makeOrder(){
  menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
- System.out.println("Choose if you are calling or ordering in shop (1 for shop, 2 for call)");
+ System.out.println("Is customer calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
 
             if (type == 1) {
@@ -29,13 +29,18 @@ public void makeOrder(){
                 time = time.plusHours(1); // Add 1 hour
                 
                }  
-   
-   System.out.println("How many pizzas would you like to order today?");
+  
+   System.out.println("How many pizzas is the customer ordering?");
       int choice = scan.nextInt();
+   
+   // shows the menu 
+   System.out.println("Here is the current menu: "); 
+   Pizza.viewMenu();   
+   System.out.println(" ");    
       
       double price = 0;
          for(int x = 0;x < choice; x++){
-            System.out.println("what number pizza would you like ?");
+            System.out.println("What number pizza would you like to add to orderlist?");
             int pizzaID = scan.nextInt()-1;
         
             Pizza orgPizza = menu.menuList.get(pizzaID);
