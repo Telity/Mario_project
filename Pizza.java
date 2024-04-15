@@ -28,7 +28,7 @@ public class Pizza{
       public Pizza(){
       
       }
-      // getters 
+      // getters for pizza
       public double getPrice(){
          return price; 
    }
@@ -44,6 +44,8 @@ public class Pizza{
       public int getID(){
          return ID; 
    }
+   
+      // setters for pizza 
       public void setPrice(double price){
          this.price=price; 
    }
@@ -85,10 +87,10 @@ public class Pizza{
     }*/
    //}
      
-   //an array for the menu
+   //arraylist for the menu
    static ArrayList<Pizza> menuList = new ArrayList<Pizza>();
    // ID Name Size Toppings Price 
-   //a method to call all pizzas
+   //method to call all pizzas
    public static void CreateMenu(){
       menuList.add(new Pizza(1,"Pepperoni Paradise", "normal", "cheese, sauce, pepperoni",70));
       menuList.add(new Pizza(2,"Margherita Marvel", "normal" ,"cheese, sauce, ham", 70)); 
@@ -122,6 +124,7 @@ public class Pizza{
       menuList.add(new Pizza(30,"Alfonso Dream", "normal", "cheese, sauce, gold",90)); 
       menuList.add(new Pizza(31,"Mario Supreme", "normal", "cheese, sauce, mario special sauce",90));
    }//menu
+   
    //make a new pizza to the menu
    public static void pizzaAdd() {
        Scanner scanner = new Scanner(System.in);
@@ -140,6 +143,7 @@ public class Pizza{
        System.out.println("Enter the price of the pizza:");
        double price = scanner.nextDouble();
        
+       // saves the pizza in the menu file 
        try{
        File file = new File("Menu.txt");
        Scanner sc = new Scanner(file);
@@ -167,9 +171,8 @@ public class Pizza{
          menuList.add(new Pizza(ID, name, size, toppings, price));
        }
    }//addpizza
-
    
-   //makes a file and if the file already exists do nothing
+   //creates a file and if the file already exists do nothing
    public static void CreateMenuFile() {
       try{
          File myObj = new File("Menu.txt");
@@ -184,7 +187,7 @@ public class Pizza{
          e.printStackTrace();
       }
    
-   }//createmenu
+   } //createmenu
    //type a new pizza into the menu
    public static void WritetoMenu(){
       try{
