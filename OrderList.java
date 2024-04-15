@@ -92,6 +92,9 @@ public void showOrder(){
 // removes a order from the orderlist 
 public void removeOrder(){
 
+System.out.println("Here is the current orderlist:"); 
+showOrder(); 
+
 boolean pizzaFundet = false; 
 
 System.out.println("What is the number of the pizza you want to remove?"); 
