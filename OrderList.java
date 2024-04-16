@@ -20,16 +20,17 @@ public void makeOrder(){
  menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
  System.out.println("Is customer calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
-
+            if(type>2 || type<0){
+            System.out.println("Invalid option!");
+            }
+            while(type == 1 || type == 2){
             if (type == 1) {
                 time = time.plusMinutes(15); // Add 15 minutes
-                }
-             else {
+                } else if(type == 2) {
                 System.out.println("Hello and thank you for calling");
                 time = time.plusHours(1); // Add 1 hour
-                
-               }  
-  
+                }
+             
    System.out.println("How many pizzas is the customer ordering?");
       int choice = scan.nextInt();
    
@@ -57,11 +58,12 @@ public void makeOrder(){
                   price += pizza.getPrice();
             }
 
+      }
+      System.out.println("Pizzas will be ready at " + time); // viser tiden pizzaen er klar. 
+      System.out.println("The total price is: " + price);
+break;
+   }
 }
-System.out.println("Pizzas will be ready at " + time); // viser tiden pizzaen er klar. 
-System.out.println("The total price is: " + price);
-}
-
 // sorts the pizzas by time 
 public void sortOrder() {
         Collections.sort(orderList, new Comparator<Pizza>() {
