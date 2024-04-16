@@ -144,7 +144,7 @@ public class Pizza{
        } catch(Exception e){
             e.getStackTrace();
        }
-       int ID = Line +1;
+       int ID = Line;
        boolean pizzaExists = false;
        for(Pizza pizza : menuList){
          if(pizza.getName().equalsIgnoreCase(name) &&
@@ -181,14 +181,15 @@ public class Pizza{
    public static void WritetoMenu(){
       try{
          FileWriter myWriter = new FileWriter("Menu.txt",true);
-         //myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
+         myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
          for(Pizza pizza : menuList){
             boolean pizzaExistsInFile = false;
             File file = new File("Menu.txt");
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()){
                String line = fileScanner.nextLine();
-               if(line.contains(pizza.getName()) &&
+               if(line.contains("ID|  Pizza Name  |  Size  |  Toppings |  Price") &&
+                  line.contains(pizza.getName()) &&
                   line.contains(pizza.getSize()) &&
                   line.contains(pizza.getToppings()) &&
                   line.contains(Double.toString(pizza.getPrice()))){
