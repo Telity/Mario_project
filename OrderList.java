@@ -89,10 +89,49 @@ public void showOrder(){
       System.out.println(); 
       actualNumber++; 
    }
+   
+   if(orderList.size() == 0){
+   System.out.println("You're fast! There are no current orders");
+  }
 }
 
 // removes a order from the orderlist 
 public void removeOrder(){
+
+System.out.println("Here is the current orderlist:"); 
+showOrder(); 
+
+boolean pizzaFundet = false;
+
+System.out.println("How many pizzas would you like to remove from the orderlist?"); 
+int antal = scan.nextInt(); 
+
+int i; 
+
+for(i=0; i<antal; i++){
+System.out.println("Here is the current orderlist:"); 
+   showOrder(); 
+System.out.println("What is the number of the pizza you want to remove?"); 
+   int nummer = scan.nextInt(); 
+
+for(int j=0; j<orderList.size(); j++){
+   Pizza pizza = orderList.get(j); 
+   if(pizza.getActualNumber() == nummer){ 
+      System.out.println("Pizza number : " + nummer + " " + orderList.get(nummer-1).getName()+" is removed"); 
+      orderList.remove(nummer-1); 
+      pizzaFundet = true; 
+   break; 
+   }
+}
+
+if(!pizzaFundet){
+   System.out.println("Can't find the pizza: " + nummer); 
+   
+    } 
+  }
+}
+
+/*public void removeOrder(){
 
 System.out.println("Here is the current orderlist:"); 
 showOrder(); 
@@ -115,7 +154,7 @@ if(!pizzaFundet){
    System.out.println("Can't find the pizza: " + nummer); 
    
    } 
-  }
+  } */
 
     // count method which is called in fileOrder 
     public static int count(ArrayList<Pizza> list, String name) {
