@@ -10,6 +10,7 @@ public class Ui {
         pizza.StartUp();
 
         while (true) {
+            System.out.println("\n");
             System.out.println("Welcome to the UI");
             System.out.println("1: Look at the current orders");
             System.out.println("2: Add order");
