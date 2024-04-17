@@ -37,12 +37,18 @@ public void makeOrder(){
    System.out.println("Here is the current menu: "); 
    Pizza.viewMenu();   
    System.out.println(" ");    
-      
+      boolean invalid = true;
       double price = 0;
          for(int x = 0;x < choice; x++){
             System.out.println("What number pizza would you like to add to orderlist?");
             int pizzaID = scan.nextInt()-1;
-        
+            if(pizzaID<0 || pizzaID>menu.menuList.size()){
+            System.out.println("Sorry that pizza is not on the menu, try again");
+            invalid = false;
+            break;
+            }
+            
+            
             Pizza orgPizza = menu.menuList.get(pizzaID);
                if (orgPizza != null) {
             // Ensure that the Pizza object is properly initialized
@@ -57,6 +63,9 @@ public void makeOrder(){
                   price += pizza.getPrice();
             }
 
+      }
+      if(invalid == false){
+         break;
       }
       System.out.println("Pizzas will be ready at " + time); 
       System.out.println("The total price is: " + price);
