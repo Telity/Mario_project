@@ -180,31 +180,12 @@ public class Pizza{
    //type a new pizza into the menu
    public static void WritetoMenu(){
       try{
-         FileWriter myWriter = new FileWriter("Menu.txt",true);
+         FileWriter myWriter = new FileWriter("Menu.txt",false);
          myWriter.write("ID|  Pizza Name  |  Size  |  Toppings |  Price\n");
-         for(Pizza pizza : menuList){
-            boolean pizzaExistsInFile = false;
-            File file = new File("Menu.txt");
-            Scanner fileScanner = new Scanner(file);
-            while (fileScanner.hasNextLine()){
-               String line = fileScanner.nextLine();
-               if(line.contains("ID|  Pizza Name  |  Size  |  Toppings |  Price") &&
-                  line.contains(pizza.getName()) &&
-                  line.contains(pizza.getSize()) &&
-                  line.contains(pizza.getToppings()) &&
-                  line.contains(Double.toString(pizza.getPrice()))){
-                  pizzaExistsInFile = true;
-                  break;
-                  }
-                  
-            }
-            fileScanner.close();
-            if(!pizzaExistsInFile){
-            myWriter.write(pizza.getID()+" | "+pizza.getName()+" | "+pizza.getSize()+" | "+pizza.getToppings()+" | "+pizza.getPrice()+"\n");
-         }
+         for (Pizza pizza: menuList){
+         myWriter.write(pizza.getID() + " | " + pizza.getName() + " | " + pizza.getSize() + " | " + pizza.getToppings() + " | " + pizza.getPrice() + "\n");
          }
          myWriter.close();
-      
       } catch(IOException e){
          System.out.println("An error occured");
          e.printStackTrace();
@@ -242,12 +223,50 @@ public class Pizza{
    public static void StartUp(){
       CreateMenu();
       CreateMenuFile();
+      LoadMenu();
       WritetoMenu();
       viewMenu();
    }//Menu
+   public static void LoadMenu() {
+    try {
+        File file = new File("Menu.txt");
+        Scanner scanner = new Scanner(file);
+        int counter = 1;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] tokens = line.split("\\|");
+            int ID = counter++;
+            String name = tokens[1].trim();
+            String size = tokens[2].trim();
+            String toppings = tokens[3].trim();
+            String priceStr = tokens[4].trim(); // Store the price string for debugging
+            try {
+                double price = Double.parseDouble(priceStr);
+                boolean pizzaExists = false;
+                for (Pizza pizza : menuList) {
+                    if (pizza.getID() == ID) {
+                        pizzaExists = true;
+                        break;
+                    }
+                }
+                // If the pizza doesn't exist, add it to the menuList
+                if (!pizzaExists) {
+                    menuList.add(new Pizza(ID, name, size, toppings, price));
+                }
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+        scanner.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("An error has occurred");
+        e.printStackTrace();
+    }
+}
    public static void AddPizza(){
       pizzaAdd();
       WritetoMenu();
+      LoadMenu();
    }//AddPizza
    
    /*public static void main (String[]args){
