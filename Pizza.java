@@ -144,7 +144,7 @@ public class Pizza{
        } catch(Exception e){
             e.getStackTrace();
        }
-       int ID = Line;
+       int ID = menuList.size()+1;
        boolean pizzaExists = false;
        for(Pizza pizza : menuList){
          if(pizza.getName().equalsIgnoreCase(name) &&
@@ -231,7 +231,7 @@ public class Pizza{
     try {
         File file = new File("Menu.txt");
         Scanner scanner = new Scanner(file);
-        int counter = 1;
+        int counter = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] tokens = line.split("\\|");
