@@ -7,7 +7,7 @@ import java.time.*;
 public class OrderList{ 
 Pizza menu = new Pizza(); 
 Scanner scan = new Scanner(System.in); 
-static LocalTime time = LocalTime.of(14, 0); // Initialize time to 14:00
+static LocalTime time = LocalTime.of(14, 0); // Initialize time to 14:00 / pizzeria opens at 14. 
 static Random random = new Random();
 static int count;
   
@@ -18,7 +18,7 @@ ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 // creates a new order (time & pizza ID)
 public void makeOrder(){
  menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
- System.out.println("Is customer calling or ordering in shop (1 for shop, 2 for call)");
+   System.out.println("Is customer calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
             if(type>2 || type<0){
             System.out.println("Invalid option!");
@@ -59,7 +59,7 @@ public void makeOrder(){
             }
 
       }
-      System.out.println("Pizzas will be ready at " + time); // viser tiden pizzaen er klar. 
+      System.out.println("Pizzas will be ready at " + time); 
       System.out.println("The total price is: " + price);
 break;
    }
@@ -156,7 +156,7 @@ if(!pizzaFundet){
    } 
   } */
 
-    // count method which is called in fileOrder 
+    // count method which is called in fileOrder, tell how many times a pizza name is on list. 
     public static int count(ArrayList<Pizza> list, String name) {
         count = 0;
         for (Pizza pizza : list) {
@@ -175,55 +175,56 @@ public void fileOrder(){
             file.createNewFile();
          }
       FileWriter writer = new FileWriter(file,true);
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // ænder datoen fra amerikans order til dansk
-         String dkDate = LocalDate.now().format(formatter); //ændre datoen til en string. 
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Change date from american system to danish
+         String dkDate = LocalDate.now().format(formatter); //Changes date to a string  
             writer.write("Todays date: ["+dkDate+"]\n");
-            //writer.write("\n");
+            //sort the pizzas after names
+            Collections.sort(savedOrders, new Comparator<Pizza>() {
+                  @Override
+                     public int compare(Pizza p1, Pizza p2) {
+                        return p1.getName().compareTo(p2.getName());
+                     }
+            });
+            
             for(Pizza pizza : savedOrders){
                  writer.write("ID: ["+pizza.getID()+"]  Name: [" + pizza.getName()+ "] Size: ["
                   + pizza.getSize()+ "] Toppings: [" + pizza.getToppings()+"] Price: [" + pizza.getPrice() + "] Time: [" 
                   + pizza.getTime()+"]\n");
-                 //writer.write("\n");
-                 //writer.close();
                  }
                  writer.write("\n");
-                 Collections.sort(savedOrders, new Comparator<Pizza>() {
-       @Override
-       public int compare(Pizza p1, Pizza p2) {
-         return p1.getName().compareTo(p2.getName());
-            }
-        });
-      String[] pizzaNames = new String[savedOrders.size()];
-      int[] pizzaCounts = new int[savedOrders.size()];
+            //Statistic for pizza, tells pizza name and how many of that type there is.       
+            String[] pizzaNames = new String[savedOrders.size()];
+            int[] pizzaCounts = new int[savedOrders.size()];
 
-         int numPizza = 0;
+               int numPizza = 0;
 
-         for (Pizza pizza : savedOrders) {
+               for (Pizza pizza : savedOrders) {
                String pizzaName = pizza.getName();
-    // checks if the pizza name is already there
-          boolean isProcessed = false;
-            for (int i = 0; i < numPizza; i++) {
-                  if (pizzaNames[i].equals(pizzaName)) {
-                   isProcessed = true;
-                   break;
-        }
-    }
-    // if a pizza has not been detected
-    if (!isProcessed) {
-        int count = count(savedOrders, pizzaName);
-        pizzaNames[numPizza] = pizzaName;
-        pizzaCounts[numPizza] = count;
-        numPizza++;
-    }
-}
-writer.write("Data for Statistics \n");
-// Write the count for each unique pizza name
-for (int i = 0; i < numPizza; i++) {
-    writer.write("Number of Pizza " + pizzaNames[i] + " is : " + pizzaCounts[i] + "\n");
-}
-writer.write("\n");
-writer.close();
-   }
+               boolean isProcessed = false;
+                 // checks if the pizza name is already there
+                 for (int i = 0; i < numPizza; i++) {
+                     if (pizzaNames[i].equals(pizzaName)) {
+                     isProcessed = true;
+                     break;
+                     }
+                     }
+               // if a new pizza name comes, this will add it to the arrays, with both name and a number.
+               // count method, will add how many times that pizza name have occurred, in the savedOrders arraylist. 
+                 if (!isProcessed) {
+                     int count = count(savedOrders, pizzaName);
+                     pizzaNames[numPizza] = pizzaName;
+                     pizzaCounts[numPizza] = count;
+                     numPizza++;
+                     }
+                }  
+      writer.write("Data for Statistics \n");
+      // Writes the name of the pizza and how many times it have been ordered. 
+      for (int i = 0; i < numPizza; i++) {
+          writer.write("Number of Pizza " + pizzaNames[i] + " is : " + pizzaCounts[i] + "\n");
+      }
+      writer.write("\n");
+      writer.close();
+      }
    catch(Exception e){
       e.printStackTrace();
    }
