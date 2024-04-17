@@ -131,31 +131,6 @@ if(!pizzaFundet){
   }
 }
 
-/*public void removeOrder(){
-
-System.out.println("Here is the current orderlist:"); 
-showOrder(); 
-
-boolean pizzaFundet = false; 
-
-System.out.println("What is the number of the pizza you want to remove?"); 
-   int nummer = scan.nextInt(); 
-
-for(int i=0; i<orderList.size(); i++){
-   Pizza pizza = orderList.get(i); 
-   if(pizza.getActualNumber() == nummer){ 
-      System.out.println("Pizza number : " + nummer + " " + orderList.get(nummer-1).getName()+" is removed"); 
-      orderList.remove(nummer-1); 
-      pizzaFundet = true; 
-   break; 
-   }
-}
-if(!pizzaFundet){
-   System.out.println("Can't find the pizza: " + nummer); 
-   
-   } 
-  } */
-
     // count method which is called in fileOrder, tell how many times a pizza name is on list. 
     public static int count(ArrayList<Pizza> list, String name) {
         count = 0;
