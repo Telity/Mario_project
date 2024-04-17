@@ -10,6 +10,7 @@ public class Ui {
         pizza.StartUp();
 
         while (true) {
+            System.out.println("\n");
             System.out.println("Welcome to the UI");
             System.out.println("1: Look at the current orders");
             System.out.println("2: Add order");
@@ -21,24 +22,24 @@ public class Ui {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
+                case 1: // Look at Current orders
                     orderList.showOrder();
                     orderList.sortOrder();
                     break;
-                case 2:
+                case 2:// Add order
                     orderList.makeOrder();
                     orderList.showOrder();
                     break;
-                case 3:
+                case 3:// Remove order
                     orderList.removeOrder();
                     break;
-                case 4:
+                case 4:// View menu card
                     pizza.viewMenu();
                     break;
-                case 5:
+                case 5:// add pizza to the menu card
                     pizza.AddPizza();
                     break;
-                case 6:
+                case 6://exits and files order 
                     System.out.println("Exiting UI. Have a great day");
                     orderList.fileOrder();
                     System.exit(0);
