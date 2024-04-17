@@ -17,7 +17,6 @@ ArrayList<Pizza> savedOrders = new ArrayList<Pizza>();
 
 // creates a new order (time & pizza ID)
 public void makeOrder(){
- menu.CreateMenu(); // calls the menu - so we dont run into indexoutofbounds
    System.out.println("Is customer calling or ordering in shop (1 for shop, 2 for call)");
             int type = scan.nextInt();
             if(type>2 || type<0){
